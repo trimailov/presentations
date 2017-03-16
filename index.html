@@ -1,0 +1,1157 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+    <style>
+      .slides a {
+        text-decoration: underline;
+      }
+
+      .slides p.small-text-p {
+        font-size: 30px;
+      }
+
+      .slides .cite {
+        font-size: 15px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      ul {
+        margin: 0;
+      }
+
+      ul.dashed, ul.checked, ul.crossed, ul ul.checked {
+        list-style-type: none;
+      }
+
+      ul.dashed > li:before {
+        content: "- ";
+        text-indent: -5px;
+      }
+
+      ul.checked > li:before {
+        content: "✓ ";
+        text-indent: -5px;
+      }
+
+      ul.crossed > li:before {
+        content: "✗ ";
+        text-indent: -5px;
+      }
+
+      .slides sup {
+        position: relative;
+        font-size: 15px;
+      }
+
+      .hjs span {
+        left: -100px;
+      }
+
+      .highlight-yellow {
+        color: #e7ad52;
+      }
+    </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+        <section>
+          <h2>
+            <span style="color: #ffde57">Py</span><span style="color: #4584b6">thon</span>
+          </h2>
+          <h3> The last language you'll need to learn </h3>
+
+          <hr>
+
+          <p class="small-text-p">
+            Justas Trimailovas
+            <br>
+            VilniusPy 2017-03-15
+          </p>
+
+          <aside class="notes">
+            My name is Justas Trimailovas, and I will give a presentation on why python may be the last language you'll need to learn
+            <br><br>
+            though if we'd drop the click bait title
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h4>overview of python's <a href="https://docs.python.org/3/library/index.html">stdlib</a></h4>
+
+            <aside class="notes">
+              It's simply an overview and walkthrough the quite extensive python's standard library
+            </aside>
+          </section>
+
+          <section>
+            <h6>Goal</h6>
+
+            <hr>
+
+            <ul>
+              <li class="fragment" data-fragment-index="0">walk through quite big python's<sup>*</sup> <i>stdlib</i> with short stops on more interesting parts of it</li>
+              <li class="fragment">no need to reinvent the wheel</li>
+              <li class="fragment">no need for third party dependencies</li>
+            </ul>
+
+            <p class="fragment" style="text-align: left; font-size: 0.7em;"><em>This is not a comparisson against other programming languages</em></p>
+
+            <span class="cite fragment" data-fragment-index="0">* python 3.6</span>
+
+            <aside class="notes">
+              I am not going to talk extremely thoroughly about each point of stdlib. In fact some parts would of it would only be mentioned and skipped without too much detail. I am picking examples, which in my opinion, make python a great programming language.
+
+              <br>
+              <br>
+
+              Also, I am hoping that we are on track of using latest and greatest - python 3.6
+
+              <br>
+              <br>
+
+              This is not comparison against stdlibs of other language's
+            </aside>
+          </section>
+        </section>
+
+        <section height="100%">
+          <h4>Why python is great?</h4>
+
+          <hr>
+
+          <p>
+            It's <span>general purpose</li>,
+            <span>batteries included</li>,
+            <span class="fragment" data-fragment-index="0">desert island programming language <sup>*</sup></li>
+          </p>
+
+          <span class="fragment cite" data-fragment-index="0">* <a href="https://youtu.be/RZ4Sn-Y7AP8?t=19m33s">David Beazley: Discovering Python - PyCon 2014</a></span>
+
+          <aside class="notes">
+            Stdlib is one of the major parts that makes python a great programming language
+            <br>
+            <br>
+            It makes it batteries included general purpose language
+            <br>
+            <br>
+            If you'd need to pick a programming language to go to a technological desert island, python would be a great, if not the best, choice
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/stdtypes.html">Built-in types</a></h3>
+
+            <hr>
+
+            <code>int, float, complex, str, int, tuple, dict, set...</code>
+
+            <aside class="notes">
+              Nothing special in particular here, though sets are very nice objects to have
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>set</code></h4>
+
+            <hr>
+
+            <p>collection of distinct hashable objects</p>
+          </section>
+
+          <section>
+            <h4><code>set</code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+# check if list is from the same elements
+len(set(humongous_list)) == 1
+
+# compare dicts.
+# symmetric difference,
+# if items are equal - returns empty set
+set(foo_dict.items()) ^ set(bar_dict.items())
+# there are more operations: subset, superset, union, etc.
+
+# set comprehension
+{user.profession for user in users}
+# {'administrator', 'engineer', 'manager'}
+              </code>
+            </pre>
+
+            <aside class="notes">
+              I am not a programming polyglot, but I guess that not all languages have built-in sets (or similar objects).
+              <br><br>
+              It's very great when you need to check how many unique elements you have in a collection, or you want to somehow compare collections or do operations with them, for example subtract.
+            </aside>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/text.html">Text processing services</a></h3>
+
+            <hr>
+
+            <code>string, re, difflib, textwrap, readline, rlcompleter, ...</code>
+
+            <aside class="notes">
+              Quite powerfull built in tools for text processing, regexps, diffs, gnu readline, pretty straightforward stuff which is very convenient to have, though I will mention string and textwrap
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>string</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python" style="font-size: 0.9em; line-height: 1em;">
+import secrets
+import string
+
+# create string with random letters and digits
+symbols = string.ascii_letters + string.digits
+random_string = ''.join(secrets.choice(symbols) for i in range(50))
+print(random_string)
+# ugszGgIRBZ9TduZxtpBDyK0Odp6qHyAxDBmBU7s5xpUPGfHAt4
+              </code>
+            </pre>
+
+            <aside class="notes">
+              This is an example about how I recently discovered string module.
+              <br><br>
+              We simply can get strings of some symbols without reinventing the wheel.
+              <br><br>
+              String module can be used for string formatting and templating.
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>textwrap</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">import textwrap
+
+s = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+textwrap.wrap(s, width=8)
+# ['Lorem',
+#  'ipsum',
+#  'dolor',
+#  'sit',
+#  'amet, co',
+#  'nsectetu',
+#  'r adipis',
+#  'cing',
+#  'elit.']
+textwrap.shorten("Hello  world!", width=10)
+# 'Hello [...]'
+              </code>
+            </pre>
+
+            <aside class="notes">
+              This module is also quite recent ant pleasant discovery for me.
+              <br><br>
+              Another stdlib module, which saves time of reinventing the wheel or third-party lib use.
+              <br><br>
+              Apart from obvoius wrapping it can do for example indenting or string shortenning
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/datatypes.html">Data types</a></h3>
+
+            <hr>
+
+            <code>datetime, calendar, collections, array, pprint, enum, ...</code>
+
+            <aside class="notes">
+              Section called data types have a few gems
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>calendar</a></code></h4>
+
+            <hr>
+
+            <pre style="margin-bottom: 0;">
+              <code class="hljs python">
+import calendar
+
+calendar.monthrange(2017, 3)
+# March starts on wednesday and has 31 days
+# (2, 31)
+calendar.day_name[calendar.weekday(2017, 3, 15)]
+# 'Wednesday'
+calendar.HTMLCalendar(2017, 3)
+              </code>
+            </pre>
+
+            <img src="assets/calendar.png" width="30%" style="margin-top: 0;"/>
+
+            <aside class="notes">
+              time, calendars, timezones, etc. are hard to do right
+              <br><br>
+              calendar module comes to help, it knows about days, months, years, date ranges, can build calendars, etc.
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>collections</a></code></h4>
+
+            <hr>
+
+            <code>namedtuple, OrderedDict, defaultdict, Counter, ...</code>
+
+            <aside class="notes">
+              collections - is a somewhat more special purpose container types instead of general lists, dicts , etc.
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>collections.namedtuple</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import collections
+
+Point = collections.namedtuple("Point", ["x", "y"])
+p = Point(3, 4)
+
+import math
+
+math.sqrt(p.x ** 2 + p.y ** 2)
+# 5.0
+              </code>
+            </pre>
+
+            <aside class="notes">
+              with namedtuple we can have more semantic tuples and avoid using mysterious indexes to access tuple's members
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>collections.defaultdict</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import collections
+
+s = [('submit', 'create_instance'),
+     ('delete', 'notify'),
+     ('submit', 'send_email'),
+     ('touch', 'scroll'),]
+d = collections.defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+
+sorted(d.items())
+# [('delete', ['notify']),
+#  ('submit', ['create_instance', 'send_email']),
+#  ('touch', ['scroll'])]
+              </code>
+            </pre>
+
+            <aside class="notes">
+              defaultdict subclasses dict, where you can provide initial value
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>pprint</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import calendar
+import pprint
+
+pprint.pprint(dir(calendar.HTMLCalendar()))
+# ['__class__',
+#  '__delattr__',
+#  '__dict__',
+#  '__dir__',
+#  ....
+#  'firstweekday',
+#  'formatday',
+#  'formatmonth',
+#  ....
+#  'yeardayscalendar']
+              </code>
+            </pre>
+          </section>
+
+          <aside class="notes">
+            pprint - pretty print, self explanatory. especially usefull when we have long collections, text, html
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/numeric.html">Numeric and Mathematical modules</a></h3>
+
+            <hr>
+
+            <code>numbers, math, cmath, decimal, fractions, random, statistics</code>
+
+          <aside class="notes">
+            nothing special in particular. most languages have math, random and similart modules in their stdlibs
+          </aside>
+        </section>
+
+        <section>
+          <h4><code>statistics</a></code></h4>
+
+          <hr>
+
+          <pre>
+            <code class="hljs python">
+import statistics
+
+salaries = [100, 114, 180, 200, 205, 240, 1000]
+statistics.mean(salaries)
+# 291.2857142857143
+
+statistics.median(salaries)
+# 200
+
+statistics.stdev(salaries)
+# 316.5147254529739
+              </code>
+            </pre>
+
+            <aside class="notes">
+              peculiar that statistics module was added only in 3.4
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/functional.html">Functional programming modules</a></h3>
+
+            <hr>
+
+            <code>itertools, functools, operator</code>
+
+            <aside class="notes">
+              functional programming gems in stdlib, which are often forgot or unkown
+            </aside>
+          </section>
+
+          <section>
+            <h4><code><a href="https://docs.python.org/3.6/library/itertools.html">itertools</a></code></h4>
+
+            <hr>
+
+            <span class="highlight-yellow">Infinite:</span> <code>count, cycle, repeat</code>
+            <br>
+            <br>
+            <span class="highlight-yellow">Sequence:</span> <code>accumulate, chain, filterfalse, groupby, ...</code>
+            <br>
+            <br>
+            <span class="highlight-yellow">Combinatorics:</span> <code>permutations, product, combinations, ...</code>
+            </pre>
+
+            <aside class="notes">
+              itertools has a set of fast and memory efficient functions, which return iterators
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>itertools.cycle</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import itertools
+
+c = itertools.cycle('ABC')
+next(c)
+# 'A'
+next(c)
+# 'B'
+next(c)
+# 'C'
+next(c)
+# 'A'
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>itertools.filterfalse</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import itertools
+
+# leave uneven numbers
+ff = itertools.filterfalse(lambda x: x % 2 == 0, range(10))
+for i in ff:
+    print(i)
+# 1
+# 3
+# 5
+# 7
+# 9
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>itertools.groupby</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python" style="font-size: 0.9em; line-height: 1.1em">
+from datetime import datetime as dt
+import itertools
+
+# work start and finish log
+log = [(dt(2010, 1, 1, 8), 'arrive'),
+       (dt(2010, 1, 1, 16), 'leave'),
+       (dt(2010, 1, 2, 9), 'arrive'),
+       (dt(2010, 1, 2, 16), 'leave')]
+
+g =  itertools.groupby(sorted(log, key=lambda x: x[0].hour),
+                       key=lambda x: x[0].hour):
+for key, group in g:
+    print(key, list(group))
+# 8 [(datetime.datetime(2010, 1, 1, 8, 0), 'arrive')]
+# 9 [(datetime.datetime(2010, 1, 2, 9, 0), 'arrive')]
+# 16 [(datetime.datetime(2010, 1, 1, 16, 0), 'leave'),
+#     (datetime.datetime(2010, 1, 2, 16, 0), 'leave')]
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>itertools.product</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import itertools
+
+for i in itertools.product(['a', 'b'], [1, 2]):
+     print(i)
+# ('a', 1)
+# ('a', 2)
+# ('b', 1)
+# ('b', 2)
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>functools</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import functools
+
+quinary = functools.partial(int, base=5)
+quinary('10')
+# 5
+
+Engineer = functools.partial(User, profession="engineer")
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/filesys.html">File and Directory access</a></h3>
+
+            <hr>
+
+            <code>pathlib, os.path, tempfile, fnmatch...</code>
+
+            <aside class="notes">
+							Nothing special here, apart that `pathlib` is a third-party module which was included into stdlib
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>pathlib</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import pathlib
+
+p = pathlib.Path(__file__)
+scripts = p / "scripts"
+python_scripts = scripts.glob("*.py")
+
+p.parts()
+# ('/', 'opt', 'my_app')
+              </code>
+            </pre>
+
+            <aside class="notes">
+							Pathlib provied high level object-oriented file system paths
+
+							One of the most fun things is that division operator works for path joining - very nice syntactic sugar
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/persistence.html">Data persistence</a></h3>
+
+            <hr>
+
+            <code>pickle, sqlite3, ...</code>
+
+            <aside class="notes">
+							pickle - is python object serialization, though it's not secure and has more flaws
+							<br><br>
+							you can use sqlite3 - out of the box
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/archiving.html">Data compression and archiving</a></h3>
+
+            <hr>
+
+            <code>zlib, gzip, bz2, lzma, zipfile, tarfile</code>
+
+            <aside class="notes">
+							Not going to stop here for long as well - just good to know, that we can work with file compression and archiving from stdlib
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/fileformats.html">File formats</a></h3>
+
+            <hr>
+
+            <code>csv, configparser, ...</code>
+
+            <aside class="notes">
+							imho quite often used tools
+							<br><br>
+							csv - it's straight forward what it is, though configparser was a recent discovery for me
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>configparser</a></code></h4>
+
+            <hr>
+
+            <p>INI like config file parsing</p>
+          </section>
+
+          <section>
+            <h4><code>configparser</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+# config.ini
+[network]
+port = 8080
+
+[secrets]
+pub_key = very_secret
+priv_key = supah_secret
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>configparser</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+config['network']['port']
+# '8080'
+config['network']['port'] = '1337'
+with open('config.ini', 'w') as configfile:
+    config.write(configfile)
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/crypto.html">Cryptographic services</a></h3>
+
+            <hr>
+
+            <code>hashlib, hmac, secrets</code>
+          </section>
+
+          <section>
+            <h4><code>secrets</a></code></h4>
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import secrets
+
+secrets.token_urlsafe(nbytes=8)
+# 'Ca8rdNzYQmY'
+              </code>
+            </pre>
+
+            <aside class="notes">
+							helps with token and random string, e.g. password, generation
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h3><a href="https://docs.python.org/3/library/allos.html">Generic OS services</a></h3>
+
+          <hr>
+
+          <code>os, io, time, argparse, logging, getpass, curses, ...</code>
+
+					<aside class="notes">
+						argparse, logging, curses!
+						<br><br>
+            you can write proper CLIs and TUIs with logging, without any third-party libs
+					</aside>
+        </section>
+
+        <section>
+          <h3><a href="https://docs.python.org/3/library/concurrency.html">Concurrency</a></h3>
+
+          <hr>
+
+          <code>threading, multiprocessing, subprocess, concurrent.futures, ...</code>
+
+					<aside class="notes">
+						I am far from expert on concurrency, and it's a notable pain point of python due to GIL
+						<br><br>
+						Though subprocess and concurrent.futures are usefull tools without mentioning ordinary threading and multiprocessing
+					</aside>
+        </section>
+
+        <section>
+          <h3><a href="https://docs.python.org/3/library/ipc.html">Inter process communication</a></h3>
+
+          <hr>
+
+          <code>socket, asyncio, ...</code>
+
+					<aside class="notes">
+						asyncio - probably one of the most notable features of python3.4+, providing event loop, asyncio and coroutines
+					</aside>
+        </section>
+
+        <section>
+            <h3><a href="https://docs.python.org/3/library/netdata.html">Internet data handling</a></h3>
+
+            <hr>
+
+            <code>email, json, mimetypes, ...</code>
+
+						<aside class="notes">
+							simple to use tools for web data handling
+						</aside>
+        </section>
+
+        <section>
+            <h3><a href="https://docs.python.org/3/library/markup.html">Structured markup processing tools</a></h3>
+
+            <hr>
+
+            <code>html, xml</code>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/internet.html">Internet protocols and support</a></h3>
+
+            <hr>
+
+            <code>cgi, wsgiref, urllib, http, smptlib, ...</code>
+          </section>
+
+          <section>
+            <h4><code>wsgiref</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python" style="font-size: 0.8em; line-height: 1em;"># https://docs.python.org/3.6/library/wsgiref.html#examples
+from wsgiref.simple_server import make_server
+
+def hello_world_app(environ, start_response):
+    status = '200 OK'  # HTTP Status
+    headers = [('Content-type', 'text/plain; charset=utf-8')]
+    start_response(status, headers)
+
+    # The returned object is going to be printed
+    return [b"Hello World"]
+
+with make_server('', 8000, hello_world_app) as httpd:
+    print("Serving on port 8000...")
+
+    # Serve until process is killed
+    httpd.serve_forever()
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>urllib</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import urllib.request
+
+r = urllib.request.urlopen("http://vilniuspy.lt")
+r.status
+# 200
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>http</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+$ python3 -m http.server
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <h3><a href="https://docs.python.org/3/library/mm.html">Multimedia</a></h3>
+
+          <hr>
+
+          <code>audioop, wave, colorsys</code>
+
+					<aside class="notes">
+						interesting to know that python can work with audio files also do color systems operations
+					</aside>
+        </section>
+
+        <section>
+          <h3><a href="https://docs.python.org/3/library/i18n.html">Internationalization</a></h3>
+
+          <hr>
+
+          <code>gettext, locale</code>
+
+					<aside class="notes">
+						almost a must have for most application development
+					</aside>
+        </section>
+
+        <section>
+        <section>
+          <h3><a href="https://docs.python.org/3/library/frameworks.html">Frameworks</a></h3>
+
+          <hr>
+
+          <code>turtle, ...</code>
+        </section>
+
+        <section>
+          <h4><code>turtle</a></code></h4>
+
+          <hr>
+
+          <pre>
+            <code class="hljs python">
+from turtle import *
+
+color("red", "yellow")
+begin_fill()
+while True:
+    forward(200)
+    left(170)
+    if abs(pos()) < 1:
+        break
+end_fill()
+done()
+              </code>
+            </pre>
+          </section>
+
+					<section>
+						<h4><code>turtle</a></code></h4>
+
+						<hr>
+
+						<img src="assets/turtle-star.png" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/tk.html">GUI with Tkinter</a></h3>
+
+            <hr>
+
+            <code>tkinter</code>
+          </section>
+
+          <section>
+            <h4><code>tkinter</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import tkinter as tk
+
+root = tk.Tk()
+root.mainloop()
+              </code>
+            </pre>
+
+            <img src="assets/tkinter.png" width="25%"/>
+
+            <aside class="notes">
+              tkinter - it's ugly, but it's small, it's built in and it can get the job done
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/development.html">Dev tools</a></h3>
+
+            <hr>
+
+            <code>typing, pydoc, doctest, unittest, unittest.mock</code>
+
+            <aside class="notes">
+              typing annotations, documentation generation, testing
+            </aside>
+          </section>
+
+          <section>
+            <h4><code>pydoc</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+$ ls
+my_file.py
+
+$ pydoc -w my_file
+wrote my_file.html
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h4><code>doctest</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+# times.py
+def times2(number):
+    """
+    >>> times2(5)
+    10
+    """
+    return number * 2
+
+$ python -m doctest times.py
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/debug.html">Debugging and profiling</a></h3>
+
+            <hr>
+
+            <code>pdb, timeit, ...</code>
+          </section>
+
+          <section>
+            <h4><code>pdb</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+# times.py
+def times2(number):
+    """
+    >>> times2(5)
+    10
+    """
+    import pdb; pdb.set_trace()
+    return number * 2
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h4><code>timeit</a></code></h4>
+
+            <hr>
+
+            <pre>
+              <code class="hljs python">
+import time
+
+timeit(time.sleep(1))
+# 1 loop, best of 3: 1 s per loop
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3><a href="https://docs.python.org/3/library/distribution.html">Software packaging and distribution</a></h3>
+
+            <hr>
+
+            <code>distutils, venv, ...</code>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Conclusions</h3>
+          </section>
+
+          <section>
+            <h3>Good</h3>
+
+            <hr>
+
+            <ul class="checked" style="font-size: 0.7em;">
+              <li>extensive</li>
+              <li>general purpose indeed</li>
+              <li>check stdlib first before searching for third party libs</li>
+              <li>do data processing with <code>collections, itertools, etc</code></li>
+              <li>do CLI, TUI, GUI development</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Bad</h3>
+
+            <hr>
+
+            <ul class="crossed" style="font-size: 0.7em;">
+              <li>unpythonic <code>¯\_(ツ)_/¯</code></li>
+              <li>hard and cumbersome to use</li>
+              <li>third party libraries may be better:
+                <ul class="checked">
+                  <li>python ⇨ ipython</li>
+                  <li>pdb ⇨ ipdb</li>
+                  <li>urllib ⇨ requests</li>
+                  <li>argparse ⇨ click</li>
+                  <li>webdev ⇨ django, pyramid, flask</li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <img src="assets/pyconlt.png" />
+
+          <p><a href="http://www.pycon.lt">pycon.lt</a></p>
+          <p>May 13th, Kaunas</p>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				],
+
+        transition: 'none'
+			});
+		</script>
+	</body>
+</html>
